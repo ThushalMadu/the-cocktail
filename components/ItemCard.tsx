@@ -18,18 +18,22 @@ export default function ItemCard({
 }: ItemCardProps) {
    return (
       <div className="overflow-hidden rounded-2xl shadow-lg bg-white h-[500px] flex flex-col">
-         <div className="h-48 overflow-hidden">
+         <div className="h-48 w-full relative overflow-hidden">
             <Image
                src={imageUrl}
                alt={title}
+               fill
                className="object-cover"
-               width={400}
-               height={300}
+               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
             />
          </div>
          <div className="p-6 flex-1 flex flex-col">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
-            <p className="text-gray-600 text-sm flex-1 mb-4">{description}</p>
+            <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2">
+               {title}
+            </h3>
+            <p className="text-gray-600 text-sm flex-1 mb-4 line-clamp-4 overflow-hidden">
+               {description}
+            </p>
             {!isFavorite && (
                <button
                   onClick={onClickFavorite}

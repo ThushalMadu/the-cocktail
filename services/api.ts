@@ -4,6 +4,7 @@ import {
    transformCocktail,
    SimpleCocktail,
 } from "@/types/cockTailType";
+import z from "zod";
 
 const handleApiResponse = async (response: Response) => {
    if (!response.ok) {
@@ -40,4 +41,26 @@ const getRandomFiveCocktails = async (): Promise<SimpleCocktail[]> => {
    }
 };
 
-export { getRandomFiveCocktails };
+const getSearchCocktails = async (query: string): Promise<SimpleCocktail[]> => {
+   try {
+      if (!query.trim()) return [];
+
+      const API_URL = `${BASEURL}/search.php?s=${encodeURIComponent(query)}`;
+      const response = await fetch(API_URL);
+      const data = await handleApiResponse(response);
+      if (!data.drinks) {
+         return [];
+      }
+      const parsedData = CocktailApiResponseSchema.safeParse(data);
+      if (!parsedData.success) {
+         console.error("Zod validation failed:", parsedData.error);
+         return [];
+      }
+      return parsedData.data.drinks.map(transformCocktail);
+   } catch (error) {
+      console.error("Error fetching search cocktails:", error);
+      return [];
+   }
+};
+
+export { getRandomFiveCocktails, getSearchCocktails };

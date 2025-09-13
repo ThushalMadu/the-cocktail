@@ -16,11 +16,6 @@ export default function Header() {
             </Link>
          </div>
          <div className="flex flex-row gap-8 items-center sm:items-start">
-            <input
-               className="border-1 py-2 px-5 rounded-3xl"
-               name="query"
-               placeholder="Search cocktails..."
-            />
             <button className="flex flex-row gap-2 items-center border-1 p-2 rounded-3xl transition-all duration-300 transform hover:-translate-y-1">
                <Image
                   src="/favorite.png"
