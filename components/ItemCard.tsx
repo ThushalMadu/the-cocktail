@@ -1,3 +1,4 @@
+import { APP_TEXTS } from "@/lib/constants";
 import Image from "next/image";
 
 type ItemCardProps = {
@@ -39,7 +40,7 @@ export default function ItemCard({
                   onClick={onClickFavorite}
                   className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-4 rounded-lg"
                >
-                  Add to favorite
+                  {APP_TEXTS.ADD_TO_FAVORITE}
                </button>
             )}
          </div>

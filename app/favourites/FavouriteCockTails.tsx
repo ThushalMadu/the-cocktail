@@ -1,5 +1,6 @@
 "use client";
 import FavoriteItemCard from "@/components/FavoriteItemCard";
+import { APP_TEXTS } from "@/lib/constants";
 import { useCocktailStore } from "@/lib/store";
 import { SimpleCocktail } from "@/types/cockTailType";
 import { ToastContainer, toast, Bounce } from "react-toastify";
@@ -9,7 +10,7 @@ export default function FavouriteCockTails() {
 
    const onClickRemoveFavorite = (item: SimpleCocktail) => {
       removeFavorite(item.id);
-      toast("🤩 Sucessfully removed your favorite cocktail 🍹", {
+      toast(APP_TEXTS.SUCCESS_REMOVE_MESSAGE, {
          position: "bottom-right",
          autoClose: 1000,
          hideProgressBar: false,

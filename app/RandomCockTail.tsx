@@ -1,7 +1,10 @@
 "use client";
 import ItemCard from "@/components/ItemCard";
+import Loader from "@/components/Loader";
+import { APP_TEXTS } from "@/lib/constants";
 import { useRandomCocktails } from "@/lib/hooks/useRandomCocktails";
 import { useSearchCocktails } from "@/lib/hooks/useSearchCocktails";
+import { useSearchDebounce } from "@/lib/hooks/useSearchDebounce";
 import { useCocktailStore } from "@/lib/store";
 import { SimpleCocktail } from "@/types/cockTailType";
 import Image from "next/image";
@@ -21,7 +24,7 @@ export default function RandomCockTail() {
 
    const onClickCockTailItem = (item: SimpleCocktail) => {
       addFavorite(item);
-      toast("🤩 Sucessfully add your favouoirte cocktail 🍹", {
+      toast(APP_TEXTS.SUCCESS_ADD_MESSAGE, {
          position: "bottom-right",
          autoClose: 1000,
          hideProgressBar: false,
@@ -36,14 +39,19 @@ export default function RandomCockTail() {
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setSearchInputValue(event.target.value);
-      setShowResults(event.target.value.length > 1);
    };
 
    const [searchInputValue, setSearchInputValue] = useState<string>("");
-   const [showResults, setShowResults] = useState(false);
+
+   // Use the debounce hook for better performance
+   const { debouncedSearchTerm, isSearching } = useSearchDebounce(
+      searchInputValue,
+      500
+   );
+   const showResults = debouncedSearchTerm.length > 1;
 
    const { data: searchResults, isLoading } =
-      useSearchCocktails(searchInputValue);
+      useSearchCocktails(debouncedSearchTerm);
 
    return (
       <div className="gap-8 flex flex-col items-center w-full">
@@ -61,13 +69,20 @@ export default function RandomCockTail() {
             transition={Bounce}
          />
          <div className="flex flex-row gap-8 justify-end items-end w-full max-w-7xl px-4">
-            <input
-               className="border-1 py-2 px-8 rounded-xl"
-               name="search"
-               value={searchInputValue ?? ""}
-               onChange={handleChange}
-               placeholder="Search cocktails..."
-            />
+            <div className="relative flex-1 max-w-md">
+               <input
+                  className="border-1 py-2 px-8 rounded-xl w-full"
+                  name="search"
+                  value={searchInputValue ?? ""}
+                  onChange={handleChange}
+                  placeholder={APP_TEXTS.SEARCH_PLACEHOLDER}
+               />
+               {isSearching && (
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                     <div className="animate-spin h-4 w-4 border-2 border-orange-500 border-t-transparent rounded-full"></div>
+                  </div>
+               )}
+            </div>
             <button
                onClick={() => refetch()}
                className="flex items-center gap-2 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-colors"
@@ -80,33 +95,39 @@ export default function RandomCockTail() {
                   height={25}
                   priority
                />
-               {isRefetching ? "Loading" : "Refresh"}
+               {isRefetching
+                  ? APP_TEXTS.LOADING_TEXT
+                  : APP_TEXTS.REFRESH_BUTTON}
             </button>
          </div>
          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full max-w-7xl px-4">
-            {showResults
-               ? searchResults?.map((item) => (
-                    <ItemCard
-                       key={item.id}
-                       isFavorite={isFavorite(item.id)}
-                       title={item.name}
-                       description={item.instructions}
-                       imageUrl={item.image}
-                       details={item.category ? [item.category] : undefined}
-                       onClickFavorite={() => onClickCockTailItem(item)}
-                    />
-                 ))
-               : cocktails?.map((item) => (
-                    <ItemCard
-                       key={item.id}
-                       isFavorite={isFavorite(item.id)}
-                       title={item.name}
-                       description={item.instructions}
-                       imageUrl={item.image}
-                       details={item.category ? [item.category] : undefined}
-                       onClickFavorite={() => onClickCockTailItem(item)}
-                    />
-                 ))}
+            {(isFetching && !showResults) || (isLoading && showResults) ? (
+               <Loader showResults={showResults} />
+            ) : showResults ? (
+               searchResults?.map((item) => (
+                  <ItemCard
+                     key={item.id}
+                     isFavorite={isFavorite(item.id)}
+                     title={item.name}
+                     description={item.instructions}
+                     imageUrl={item.image}
+                     details={item.category ? [item.category] : undefined}
+                     onClickFavorite={() => onClickCockTailItem(item)}
+                  />
+               ))
+            ) : (
+               cocktails?.map((item) => (
+                  <ItemCard
+                     key={item.id}
+                     isFavorite={isFavorite(item.id)}
+                     title={item.name}
+                     description={item.instructions}
+                     imageUrl={item.image}
+                     details={item.category ? [item.category] : undefined}
+                     onClickFavorite={() => onClickCockTailItem(item)}
+                  />
+               ))
+            )}
          </div>
       </div>
    );

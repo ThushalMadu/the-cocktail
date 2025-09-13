@@ -9,7 +9,6 @@ export type CocktailActions = {
    addFavorite: (cocktail: SimpleCocktail) => void;
    removeFavorite: (cocktailId: string) => void;
    isFavorite: (cocktailId: string) => boolean;
-   //    clearFavorites: () => void;
 };
 
 export type CocktailStore = CocktailState & CocktailActions;
@@ -32,6 +31,4 @@ export const useCocktailStore = create<CocktailStore>()((set, get) => ({
       const state = get();
       return state.favorites.some((fav) => fav.id === cocktailId);
    },
-
-   //    clearFavorites: () => set({ favorites: [] }),
 }));

@@ -16,7 +16,10 @@ export default function Header() {
             </Link>
          </div>
          <div className="flex flex-row gap-8 items-center sm:items-start">
-            <button className="flex flex-row gap-2 items-center border-1 p-2 rounded-3xl transition-all duration-300 transform hover:-translate-y-1">
+            <Link
+               className="flex flex-row gap-2 items-center border-1 p-2 rounded-3xl transition-all duration-300 transform hover:-translate-y-1"
+               href="/favourites"
+            >
                <Image
                   src="/favorite.png"
                   alt="favorite Image"
@@ -24,10 +27,8 @@ export default function Header() {
                   height={25}
                   priority
                />
-               <span className="text-[16px] font-normal">
-                  <Link href="/favourites">Favourites</Link>
-               </span>
-            </button>
+               <span className="text-[16px] font-normal">Favourites</span>
+            </Link>
          </div>
       </header>
    );

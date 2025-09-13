@@ -1,3 +1,4 @@
+import { APP_TEXTS } from "@/lib/constants";
 import Image from "next/image";
 
 type ItemCardProps = {
@@ -36,7 +37,7 @@ export default function ItemCard({
                onClick={onClickRemoveFavorite}
                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-4 rounded-lg"
             >
-               Remove from favorite
+               {APP_TEXTS.REMOVE_FROM_FAVORITE}
             </button>
          </div>
       </div>
