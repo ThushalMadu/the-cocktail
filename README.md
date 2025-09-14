@@ -59,12 +59,11 @@ the-cocktail/
 ## Features
 
 -  **Random Cocktails**: Discover new cocktails on the home page
--  **Search Functionality**: Search for specific cocktails with debounced input
+-  **Search Functionality**: Search for specific cocktails with debounced input (minimum 2 characters). Clear search to return to random cocktails
 -  **Favorites Management**: Add and remove cocktails from your favorites
--  **Responsive Design**: Optimized for mobile, tablet, and desktop
--  **Toast Notifications**: User feedback for actions
--  **State Management**: Persistent favorites using Zustand
--  **Type Safety**: Full TypeScript implementation
+-  **Responsive Design**: Responsive for mobile, tablet, and desktop
+-  **Toast Notifications**: User notify when favourite item add and remove with toast notification
+-  **State Management**: Manage favorites state using Zustand
 
 ## Available Scripts
 
@@ -93,7 +92,6 @@ Test files are located alongside their respective components with `.test.tsx` ex
 -  **Loading States**: Visual feedback during data fetching
 -  **Empty States**: Helpful messages when no data is available
 -  **Smooth Animations**: Enhanced interactions with CSS transitions
--  **Mobile-First Design**: Optimized for mobile devices
 -  **Toast Notifications**: Real-time feedback for user actions
 -  **Debounced Search**: Efficient search with reduced API calls
 
