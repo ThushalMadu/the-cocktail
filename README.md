@@ -60,7 +60,7 @@ the-cocktail/
 
 -  **Random Cocktails**: Discover new cocktails on the home page
 -  **Search Functionality**: Search for specific cocktails with debounced input (minimum 2 characters). Clear search to return to random cocktails
--  **Favorites Management**: Add and remove cocktails from your favorites
+-  **Favorites Management**: Add and remove cocktails from your favorites. To go back to the home page from favorites, simply click the cocktail icon in the header
 -  **Responsive Design**: Responsive for mobile, tablet, and desktop
 -  **Toast Notifications**: User notify when favourite item add and remove with toast notification
 -  **State Management**: Manage favorites state using Zustand
