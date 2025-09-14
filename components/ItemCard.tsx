@@ -35,14 +35,15 @@ export default function ItemCard({
             <p className="text-gray-600 text-sm flex-1 mb-4 line-clamp-4 overflow-hidden">
                {description}
             </p>
-            {!isFavorite && (
-               <button
-                  onClick={onClickFavorite}
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-4 rounded-lg"
-               >
-                  {APP_TEXTS.ADD_TO_FAVORITE}
-               </button>
-            )}
+            <button
+               disabled={isFavorite}
+               onClick={onClickFavorite}
+               className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-4 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-orange-500"
+            >
+               {!isFavorite
+                  ? APP_TEXTS.ADD_TO_FAVORITE
+                  : APP_TEXTS.BTN_FAVORITED_ITEM}
+            </button>
          </div>
       </div>
    );

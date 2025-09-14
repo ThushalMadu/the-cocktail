@@ -9,9 +9,12 @@ export const APP_TEXTS = {
    LOADING_TEXT: "Loading",
    ADD_TO_FAVORITE: "Add to favorite",
    REMOVE_FROM_FAVORITE: "Remove from favorite",
+   BTN_FAVORITED_ITEM: "Favorited",
    FAVORITES_PAGE_TITLE: "Your Favorite Cocktails",
    SUCCESS_ADD_MESSAGE: "🤩 Successfully added your favorite cocktail 🍹",
    SUCCESS_REMOVE_MESSAGE: "🤩 Successfully removed your favorite cocktail 🍹",
    SEARCHING_COCKTAILS: "Searching cocktails...",
    LOADING_COCKTAILS: "Loading cocktails...",
+   NO_FAVORITES_MESSAGE:
+      " You have no favorite cocktails yet. Start adding some! ",
 };
