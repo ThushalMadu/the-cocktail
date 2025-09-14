@@ -4,6 +4,8 @@
 
 Go to the Project the-cocktail
 
+If you download from GitHub, make a new .env file and copy everything from env_sample file and put it in the .env file.
+
 2. Install dependencies
 
 ```bash
