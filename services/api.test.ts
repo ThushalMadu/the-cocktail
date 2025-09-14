@@ -5,7 +5,7 @@ const mockFetch = fetch as jest.MockedFunction<typeof fetch>;
 
 // Mock constants
 jest.mock("../lib/constants", () => ({
-   BASEURL: "https://www.thecocktaildb.com/api/json/v1/1",
+   BASEURL: "https://www.thecocktaildb.com/api/json/v1/1/",
 }));
 
 describe("API Service Testing", () => {

@@ -20,7 +20,7 @@ const getRandomFiveCocktails = async (): Promise<SimpleCocktail[]> => {
       const seenIds = new Set<string>();
 
       while (cocktails.length < 5) {
-         const API_URL = `${BASEURL}/random.php`;
+         const API_URL = `${BASEURL}random.php`;
          const response = await fetch(API_URL);
          const data = await handleApiResponse(response);
 
@@ -45,7 +45,7 @@ const getSearchCocktails = async (query: string): Promise<SimpleCocktail[]> => {
    try {
       if (!query.trim()) return [];
 
-      const API_URL = `${BASEURL}/search.php?s=${encodeURIComponent(query)}`;
+      const API_URL = `${BASEURL}search.php?s=${encodeURIComponent(query)}`;
       const response = await fetch(API_URL);
       const data = await handleApiResponse(response);
       if (!data.drinks) {
