@@ -109,6 +109,8 @@ Test files are located alongside their respective components with `.test.tsx` ex
 
 ## Responsive Design
 
-The application is fully responsive and provides optimal viewing experience across:
+The application is fully responsive and provides optimal viewing experience across.
+
+Since this is zip/downloadable file i attach .env file in this project.
 
 Thank you
