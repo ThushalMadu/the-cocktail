@@ -17,4 +17,6 @@ export const APP_TEXTS = {
    LOADING_COCKTAILS: "Loading cocktails...",
    NO_FAVORITES_MESSAGE:
       " You have no favorite cocktails yet. Start adding some! ",
+   NO_SEARCH_RESULTS:
+      "No cocktails found for your search. Try a different term!",
 };

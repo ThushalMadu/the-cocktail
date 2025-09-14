@@ -104,17 +104,28 @@ export default function RandomCockTail() {
             {(isFetching && !showResults) || (isLoading && showResults) ? (
                <Loader showResults={showResults} />
             ) : showResults ? (
-               searchResults?.map((item) => (
-                  <ItemCard
-                     key={item.id}
-                     isFavorite={isFavorite(item.id)}
-                     title={item.name}
-                     description={item.instructions}
-                     imageUrl={item.image}
-                     details={item.category ? [item.category] : undefined}
-                     onClickFavorite={() => onClickCockTailItem(item)}
-                  />
-               ))
+               searchResults && searchResults.length > 0 ? (
+                  searchResults.map((item) => (
+                     <ItemCard
+                        key={item.id}
+                        isFavorite={isFavorite(item.id)}
+                        title={item.name}
+                        description={item.instructions}
+                        imageUrl={item.image}
+                        details={item.category ? [item.category] : undefined}
+                        onClickFavorite={() => onClickCockTailItem(item)}
+                     />
+                  ))
+               ) : (
+                  <div className="col-span-full flex flex-col items-center justify-center py-16 text-center">
+                     <p className="text-gray-600 text-lg mb-2">
+                        {APP_TEXTS.NO_SEARCH_RESULTS}
+                     </p>
+                     <p className="text-gray-400 text-sm">
+                        Search term: "{debouncedSearchTerm}"
+                     </p>
+                  </div>
+               )
             ) : (
                cocktails?.map((item) => (
                   <ItemCard
